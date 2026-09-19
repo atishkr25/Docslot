@@ -47,6 +47,21 @@ const AdminContextProvider = (props) => {
             toast.error(error.message)
         }
     }
+    
+    const removeDoctor = async (docId) => {
+        try {
+            const { data } = await axios.post(backendUrl + '/api/admin/remove-doctor', { docId }, { headers: { aToken } })
+            if (data.success) {
+                toast.success(data.message)
+                getAllDoctors()
+            } else {
+                toast.error(data.message)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
+        }
+    }
 
     // Getting all appointment data from Database using API
     const getAllAppointments = async () => {
@@ -109,7 +124,7 @@ const AdminContextProvider = (props) => {
     const value = {
         aToken, setAToken,
         backendUrl, doctors,
-        getAllDoctors, changeAvailability,
+        getAllDoctors, changeAvailability, removeDoctor,
         appointments, setAppointments,
         getAllAppointments, cancelAppointment,
          getDashData, dashData

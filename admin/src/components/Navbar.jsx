@@ -30,12 +30,14 @@ const Navbar = () => {
     <div className='flex justify-between items-center px-4 sm:px-10 py-3 border-b bg-white'>
       <div className='flex items-center gap-3 text-xs'>
 
-        <img
-          onClick={() => navigate('/')}
-          className='w-36 sm:w-40 cursor-pointer'
-          src={'/brand/docslot.svg'}
-          alt="Logo"
-        />
+        <div className="w-20 h-20 overflow-hidden">
+          <img
+            onClick={() => navigate('/')}
+            src={'/brand/docslot.svg'}
+            alt="Logo"
+            className="w-full h-full object-cover object-center cursor-pointer"
+          />
+        </div>
 
         {/* Role Label */}
         <p className='border px-2.5 py-0.5 rounded-full border-gray-500 text-gray-600'>

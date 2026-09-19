@@ -47,7 +47,12 @@ const addDoctor = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" });
+    const imageUpload = await cloudinary.uploader.upload(imageFile.path, { 
+      resource_type: "image",
+      aspect_ratio: "1:1",
+      crop: "fill",
+      gravity: "face"
+    });
     const imageUrl = imageUpload.secure_url;
 
     const doctorData = {
@@ -153,5 +158,16 @@ const adminDashboard = async (req, res) => {
     }
 }
 
+// API for removing Doctor
+const removeDoctor = async (req, res) => {
+    try {
+        const { docId } = req.body;
+        await doctorModel.findByIdAndDelete(docId);
+        res.json({ success: true, message: 'Doctor Removed' });
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
+    }
+}
 
-export {loginAdmin, addDoctor, allDoctors, appointmentsAdmin, appointmentCancel, adminDashboard}
+export {loginAdmin, addDoctor, allDoctors, appointmentsAdmin, appointmentCancel, adminDashboard, removeDoctor}
