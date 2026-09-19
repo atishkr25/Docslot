@@ -19,7 +19,7 @@ const Navbar = () => {
   }
 
   const goToUserPanel = () => {
-    window.location.href = 'https://appointy-roan.vercel.app/'
+    window.location.href = import.meta.env.VITE_FRONTEND_URL || 'http://localhost:5173/'
   }
 
   const isOnDashboard =
@@ -30,11 +30,10 @@ const Navbar = () => {
     <div className='flex justify-between items-center px-4 sm:px-10 py-3 border-b bg-white'>
       <div className='flex items-center gap-3 text-xs'>
 
-        {/* Logo */}
         <img
           onClick={() => navigate('/')}
           className='w-36 sm:w-40 cursor-pointer'
-          src={assets.admin_logo}
+          src={'/brand/docslot.svg'}
           alt="Logo"
         />
 
