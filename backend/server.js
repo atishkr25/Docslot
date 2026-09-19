@@ -19,6 +19,7 @@ connectCloudinary()
 app.use(express.json())
 app.use(cors({
   origin: [
+    "https://docslot-frontend.vercel.app",
     "https://medi-slot-frontend.vercel.app",
     "https://medi-slot-frontend-c7di9k7d1-atishkumar6115-2305s-projects.vercel.app",
     "http://localhost:5173",
